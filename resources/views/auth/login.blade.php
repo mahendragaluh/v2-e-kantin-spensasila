@@ -47,8 +47,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group form-group mb-3">
-                        <input type="username" name="username" class="form-control" value="{{ old('username') }}"
-                            placeholder="Username" required>
+                        <input type="nisn" name="nisn" class="form-control" value="{{ old('nisn') }}"
+                            placeholder="NISN" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>

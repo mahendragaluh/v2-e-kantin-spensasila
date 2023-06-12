@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class JenisMenu extends Model
 {
     use HasFactory;
+
+    protected $table = 'jenis_menus';
+    protected $fillable = ['name'];
 }

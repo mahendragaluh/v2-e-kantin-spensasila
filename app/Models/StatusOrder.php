@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class StatusOrder extends Model
 {
     use HasFactory;
+
+    protected $table = 'status_orders';
+    protected $fillable = ['name'];
 }
