@@ -87,33 +87,13 @@
                     </li>
                 @endif
                 @if (Auth::user()->level_id == '2')
-                    <li
-                        class="nav-item {{ request()->is('kasir/transaksi/pesanan-baru') || request()->is('kasir/transaksi/selesai') ? 'active menu-open' : '' }}">
-                        <a href="#" class="nav-link {{ request()->is('kasir/transaksi*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-receipt"></i>
+                    <li class="nav-item {{ request()->is('top-up*') ? 'active menu-open' : '' }}">
+                        <a href="/top-up" class="nav-link {{ request()->is('top-up*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-wallet"></i>
                             <p>
-                                Transaksi
-                                <i class="right fas fa-angle-left"></i>
+                                Top Up
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('kasir.transaksi') }}"
-                                    class="nav-link {{ request()->is('kasir/transaksi/pesanan-baru*') ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Pesanan Baru</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('kasir.transaksi.selesai') }}"
-                                    class="nav-link {{ request()->is('kasir/transaksi/selesai') ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Selesai</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                 @endif
                 @if (Auth::user()->level_id == '3')
@@ -124,6 +104,34 @@
                                 Menu
                             </p>
                         </a>
+                    </li>
+                    <li
+                        class="nav-item {{ request()->is('transaksi/pesanan-baru') || request()->is('transaksi/selesai') ? 'active menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('transaksi*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-receipt"></i>
+                            <p>
+                                Transaksi
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('pengelola.transaksi') }}"
+                                    class="nav-link {{ request()->is('transaksi/pesanan-baru*') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pesanan Baru</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('pengelola.transaksi.selesai') }}"
+                                    class="nav-link {{ request()->is('transaksi/selesai') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Selesai</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
                 <li class="nav-item ">

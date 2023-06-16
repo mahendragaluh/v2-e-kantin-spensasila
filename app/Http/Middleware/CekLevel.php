@@ -22,7 +22,7 @@ class CekLevel
         if (Auth::user()->level_id == '1') {
             return redirect('/dashboard-admin');
         } elseif (Auth::user()->level_id == '2') {
-            return redirect('/kasir/transaksi/pesanan-baru');
+            return redirect('/top-up');
         } elseif (Auth::user()->level_id == '3') {
             return redirect('/dashboard-pengelola');
         } elseif (Auth::user()->level_id == '4') {

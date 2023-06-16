@@ -44,10 +44,9 @@ Route::middleware(['auth','CekLevel:1'])->group(function () {
 
 Route::middleware(['auth','CekLevel:2'])->group(function () {
     Route::get('kasir-dashboard', [App\Http\Controllers\Kasir\HomeKasirController::class, 'index'])->name('dashboard.kasir');
-    Route::get('kasir/transaksi/pesanan-baru', [App\Http\Controllers\Kasir\TransaksiController::class, 'index'])->name('kasir.transaksi');
-    Route::get('kasir/transaksi/pesanan-baru/detail/{id}', [App\Http\Controllers\Kasir\TransaksiController::class, 'detail'])->name('kasir.transaksi.detail');
-    Route::get('kasir/transaksi/konfirmasi/{id}', [App\Http\Controllers\Kasir\TransaksiController::class, 'konfirmasi'])->name('kasir.transaksi.konfirmasi');
-    Route::get('kasir/transaksi/selesai', [App\Http\Controllers\Kasir\TransaksiController::class, 'transaksi_selesai'])->name('kasir.transaksi.selesai');
+    Route::get('top-up', [App\Http\Controllers\Kasir\SaldoController::class, 'index'])->name('top_up.kasir');
+    Route::post('/top-up{id}', [App\Http\Controllers\Kasir\SaldoController::class, 'update'])->name('update.top_up');
+
 });
 
 Route::middleware(['auth', 'CekLevel:3'])->group(function () {
@@ -56,6 +55,11 @@ Route::middleware(['auth', 'CekLevel:3'])->group(function () {
     Route::post('/menu', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'store_menu'])->name('pengelola.store.menu');
     Route::post('/menu{id}', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'update_menu'])->name('pengelola.update.menu');
     Route::delete('/menu{id}', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'destroy_menu'])->name('pengelola.destroy.menu');
+
+    Route::get('transaksi/pesanan-baru', [App\Http\Controllers\Pengelola\TransaksiController::class, 'index'])->name('pengelola.transaksi');
+    Route::get('transaksi/pesanan-baru/detail/{id}', [App\Http\Controllers\Pengelola\TransaksiController::class, 'detail'])->name('pengelola.transaksi.detail');
+    Route::get('transaksi/konfirmasi/{id}', [App\Http\Controllers\Pengelola\TransaksiController::class, 'konfirmasi'])->name('pengelola.transaksi.konfirmasi');
+    Route::get('transaksi/selesai', [App\Http\Controllers\Pengelola\TransaksiController::class, 'transaksi_selesai'])->name('pengelola.transaksi.selesai');
 });
 
 Route::middleware(['auth','CekLevel:4'])->group(function () {
