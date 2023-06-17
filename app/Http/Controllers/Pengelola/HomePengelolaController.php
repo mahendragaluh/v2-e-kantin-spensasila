@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pengelola;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Menu;
 
 class HomePengelolaController extends Controller
@@ -72,15 +73,31 @@ class HomePengelolaController extends Controller
             $request->foto_menu->move(public_path().'/assets/img/menu', $awal);
         }
 
-        $dataUpdate = [
-            'nama_menu' => $request['nama_menu'],
-            'jenis_menu_id' => $request['jenis_menu_id'],
-            'harga_menu' => $request['harga_menu'],
-            'foto_menu' => $awal,
-            'stok_menu' => $request['stok_menu'],
-        ];
+        $menus->nama_menu = $request->nama_menu;
+        $menus->jenis_menu_id = $request->jenis_menu_id;
+        $menus->harga_menu = $request->harga_menu;
+        $menus->foto_menu = $awal;
+        $menus->stok_menu = $request->stok_menu;
+        $menus->save();
 
-        $menus->update($dataUpdate);
+        // $dataUpdate = [
+        //     'nama_menu' => $request['nama_menu'],
+        //     'jenis_menu_id' => $request['jenis_menu_id'],
+        //     'harga_menu' => $request['harga_menu'],
+        //     'foto_menu' => $awal,
+        //     'stok_menu' => $request['stok_menu'],
+        // ];
+
+        // $menus->update([
+        //     'nama_menu' => $request->nama_menu,
+        //     'jenis_menu_id' => $request->jenis_menu,
+        //     'harga_menu' => $request->harga_menu,
+        //     'foto_menu' => $awal,
+        //     'stok_menu' => $request->stok_menu,
+
+        // ]);
+
+        // $menus->update($dataUpdate);
 
         if ($menus) {
             return redirect()

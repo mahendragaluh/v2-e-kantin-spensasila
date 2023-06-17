@@ -97,7 +97,8 @@
                 <div class="modal fade" id="modal-edit-menu-{{ $menu->id }}">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form method="POST" action="{{ route('pengelola.update.menu', $menu->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('pengelola.update.menu', $menu->id) }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-header">
                                     <h4 class="modal-title">Edit Menu</h4>
@@ -119,12 +120,12 @@
                                             <div class="col-sm-8">
                                                 <select class="form-control" id="jenisMenu" name="jenis_menu">
                                                     <option>Jenis Menu</option>
-                                                    <option value="1"
-                                                        {{ $menu->jenis_menu_id == '1' ? 'selected' : '' }}>Makanan</option>
-                                                    <option value="2"
-                                                        {{ $menu->jenis_menu_id == '2' ? 'selected' : '' }}>Minuman</option>
-                                                    <option value="3"
-                                                        {{ $menu->jenis_menu_id == '3' ? 'selected' : '' }}>Snack</option>
+                                                    <option value="1" {{ $menu->jenis_menu_id == '1' ? 'selected' : '' }}>
+                                                        Makanan</option>
+                                                    <option value="2" {{ $menu->jenis_menu_id == '2' ? 'selected' : '' }}>
+                                                        Minuman</option>
+                                                    <option value="3" {{ $menu->jenis_menu_id == '3' ? 'selected' : '' }}>
+                                                        Snack</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -158,11 +159,11 @@
                                                 <input type="text" class="form-control" id="stokMenu" name="stok_menu"
                                                     value="{{ $menu->stok_menu }}" placeholder="Isi Stok Menu">
                                             </div>
-                                            <label class="col-sm-4 col-form-label" for="stokMenu">Tambah Stok</label>
+                                            {{-- <label class="col-sm-4 col-form-label" for="stokMenu">Tambah Stok</label>
                                             <div class="col-sm-2">
                                                 <input type="text" class="form-control" id="stokMenu" name="stok_menu"
                                                     value="{{ $menu->stok_menu }}" placeholder="Isi Stok Menu">
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

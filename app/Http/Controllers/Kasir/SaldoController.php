@@ -67,30 +67,34 @@ class SaldoController extends Controller
             'saldo' => 'required',
         ]);
 
-        $users = User::findOrFail($id);
+        // $users = User::findOrFail($id)
+        $saldos = DB::table('users')
+        ->join('saldos', 'saldos.user_id', '=', $id)
+        ->select('users.*')
+        ->get();
         // $saldos = new Saldo;
 
-        // $saldos->user_id = $id;
-        // $saldos->saldo = $request->saldo;
+        $saldos->user_id = $id;
+        $saldos->saldo = $request->saldo;
         // $dataUpdate = [
         //     'user_id' => $request[$cekId],
         //     'saldo' => $request['saldo'],
         // ];
 
-        // $saldos->save();
+        $saldos->save();
         // $saldos->save($dataUpdate);
-        Saldo::create([
-        'user_id' => $id,
-        'saldo' => $request->saldo,
-        ]);
+        // Saldo::create([
+        // 'user_id' => $id,
+        // 'saldo' => $request->saldo,
+        // ]);
 
-        // if ($saldos) {
+        if ($saldos) {
             return redirect()
                 ->back();
-        // } else {
-        //     return redirect()
-        //         ->back();
-        // }
+        } else {
+            return redirect()
+                ->back();
+        }
     }
 
     /**
