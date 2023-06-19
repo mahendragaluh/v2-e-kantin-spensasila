@@ -66,6 +66,19 @@ class TransaksiController extends Controller
                         'stok_menu' => $ubahstok
                     ]);
         }
+
+        $kurangSaldo = DB::table('saldos')->where('order_id',$id)->get();
+        foreach($kurangistok as $kurang){
+            $ambilmenu = DB::table('menus')->where('id',$kurang->menu_id)->first();
+            $ubahstok = $ambilmenu->stok_menu - $kurang->qty;
+
+            $update = DB::table('menus')
+                    ->where('id',$kurang->menu_id)
+                    ->update([
+                        'stok_menu' => $ubahstok
+                    ]);
+        }
+
         return redirect()->route('kasir.transaksi.selesai');
     }
 
