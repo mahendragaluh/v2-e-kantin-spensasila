@@ -55,7 +55,7 @@ class TransaksiController extends Controller
         $order->status_order_id = 2;
         $order->save();
 
-        $kurangistok = DB::table('Order_details')->where('order_id',$id)->get();
+        $kurangistok = DB::table('order_details')->where('order_id',$id)->get();
         foreach($kurangistok as $kurang){
             $ambilmenu = DB::table('menus')->where('id',$kurang->menu_id)->first();
             $ubahstok = $ambilmenu->stok_menu - $kurang->qty;
@@ -66,6 +66,19 @@ class TransaksiController extends Controller
                         'stok_menu' => $ubahstok
                     ]);
         }
+
+        $kurangiSaldo = DB::table('orders')->where('id',$id)->get();
+        foreach($kurangiSaldo as $kurangSaldo){
+            $ambilSaldo = DB::table('saldos')->where('saldos.user_id',$kurangSaldo->user_id)->first();
+            $ubahSaldo = $ambilSaldo->saldo - $kurangSaldo->subtotal;
+
+            $update = DB::table('saldos')
+                    ->where('saldos.user_id',$kurangSaldo->user_id)
+                    ->update([
+                        'saldo' => $ubahSaldo
+                    ]);
+        }
+
         return redirect()->route('pengelola.transaksi.selesai');
     }
 

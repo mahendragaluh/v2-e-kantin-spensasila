@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pengelola;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Menu;
 use App\Models\JenisMenu;
@@ -63,12 +64,20 @@ class HomePengelolaController extends Controller
             $menus->foto_menu = $file;
         }
 
+        $tambahStok = DB::table('menus')->where('id',$id)->get();
+            foreach($tambahStok as $tambah){
+            $addStok = $tambah->stok_menu + $request->stok_menu;
+
+            $update = DB::table('menus')
+                    ->where('id',$id)
+                    ->update([
+                        'stok_menu' => $addStok
+                    ]);
+            }
+
         $menus->nama_menu = $request->nama_menu;
         $menus->jenis_menu_id = $request->jenis_menu_id;
         $menus->harga_menu = $request->harga_menu;
-        $menus->stok_menu = $request->stok_menu;
-
-
         $menus->save();
 
         if ($menus) {

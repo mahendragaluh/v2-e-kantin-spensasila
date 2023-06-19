@@ -31,6 +31,27 @@ class KeranjangController extends Controller
             'qty' => $request->qty
         ]);
 
+        // $keranjang = Keranjang::all()->first();
+
+        // if (empty($keranjang)) {
+        //     Keranjang::create([
+        //         'user_id' => $request->user_id,
+        //         'menu_id' => $request->menu_id,
+        //         'qty' => $request->qty
+        //     ]);
+        // } else {
+        //     $tambahKeranjang = DB::table('keranjangs')->where('id', $keranjang->id)->get();
+        //     foreach($tambahKeranjang as $tamKer){
+        //     $addKeranjang = $tamKer->qty + 1;
+
+        //     $update = DB::table('keranjangs')
+        //             ->where('id', $keranjang->id)
+        //             ->update([
+        //                 'qty' => $addKeranjang
+        //             ]);
+        //     }
+        // }
+
         return redirect()->back();
     }
 

@@ -39,10 +39,15 @@
                                                     <span
                                                         class="">Rp{{ number_format($menu->harga_menu, 2, ',', '.') }}</span>
                                                     <br>
+
                                                     @if ($menu->stok_menu == 0)
                                                         <span class="badge bg-danger">Habis</span> <br>
                                                         <button type="submit" class="btn btn-primary mt-2"
                                                             disabled>Pesan</button>
+                                                        {{-- @elseif ($keranjangs->stock == 1)
+                                                        <span class="">Stok {{ $menu->stok_menu }}s</span> <br>
+                                                        <button type="submit" class="btn btn-primary mt-2"
+                                                            disabled>Pesan</button> --}}
                                                     @else
                                                         <span class="">Stok {{ $menu->stok_menu }}</span>
                                                         <form action="{{ route('user.keranjang.simpan') }}" method="post">

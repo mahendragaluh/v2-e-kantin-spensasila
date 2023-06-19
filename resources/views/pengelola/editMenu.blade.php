@@ -82,10 +82,17 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label" for="stokMenu">Stok Menu</label>
+                                            <label class="col-sm-4 col-form-label" for="stokMenu">Sisa Stok Menu</label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="stokMenu" name="stok_menu"
-                                                    value="{{ $menus->stok_menu }}" placeholder="Isi Stok Menu">
+                                                    value="{{ $menus->stok_menu }}" placeholder="Isi Stok Menu" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label" for="stokMenu">Tambah Stok Menu</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="stokMenu" name="stok_menu"
+                                                    value="" placeholder="Isi Stok Menu">
                                             </div>
                                         </div>
                                         <div class="text-right">

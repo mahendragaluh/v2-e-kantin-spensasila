@@ -20,11 +20,11 @@ class CekLevel
             return $next($request);
         }
         if (Auth::user()->level_id == '1') {
-            return redirect('/dashboard-admin');
+            return redirect('/pengguna/user');
         } elseif (Auth::user()->level_id == '2') {
             return redirect('/top-up');
         } elseif (Auth::user()->level_id == '3') {
-            return redirect('/dashboard-pengelola');
+            return redirect('/menu');
         } elseif (Auth::user()->level_id == '4') {
             return redirect('/home');
         }

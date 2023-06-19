@@ -68,7 +68,7 @@ class SaldoController extends Controller
         $users = User::findOrFail($id);
         $saldos = Saldo::all()->first();
 
-        if ($saldos->saldo->isEmpty($saldos->saldo)) {
+        if (empty($users)) {
             Saldo::create([
                 'user_id' => $id,
                 'saldo' => $request->saldo,
