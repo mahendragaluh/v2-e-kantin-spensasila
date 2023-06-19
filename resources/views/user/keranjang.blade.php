@@ -112,13 +112,15 @@
                                             {{ number_format($subtotal, 2, ',', '.') }}</strong>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <a href="{{ route('user.checkout') }}"
-                                            class="btn btn-primary py-3 btn-block">Checkout</a>
+                                @if ($subtotal !== 0)
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a href="{{ route('user.checkout') }}"
+                                                class="btn btn-primary py-3 btn-block">Checkout</a>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>

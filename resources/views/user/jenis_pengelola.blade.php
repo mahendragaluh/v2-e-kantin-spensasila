@@ -27,7 +27,7 @@
                     <div class="col-md-9 order-2">
                         <div class="row mb-5">
                             @foreach ($menus as $menu)
-                                <div class="col-6 col-sm-6 col-lg-4 mb-1">
+                                <div class="col-6 col-sm-6 col-lg-4 mb-1" data-aos="fade-up">
                                     <div class="card text-center border">
                                         <img class="card-img-top" style="height: 150px"
                                             src="{{ asset('storage/' . $menu->foto_menu) }}" alt="Foto Menu">
@@ -39,7 +39,6 @@
                                                     <span
                                                         class="">Rp{{ number_format($menu->harga_menu, 2, ',', '.') }}</span>
                                                     <br>
-
                                                     @if ($menu->stok_menu == 0)
                                                         <span class="badge bg-danger">Habis</span> <br>
                                                         <button type="submit" class="btn btn-primary mt-2"
@@ -75,10 +74,23 @@
                         <div class="card border p-4 rounded mb-4">
                             <h3 class="mb-3 h6 text-uppercase text-black d-block">Kategori Menu</h3>
                             <ul class="list-unstyled mb-0">
-                                @foreach ($jenis_menus as $jenis)
-                                    <li class="mb-1"><a href="{{ route('user.kategori.menu', ['id' => $jenis->id]) }}"
-                                            class="d-flex"><span>{{ $jenis->name }}</span> <span
-                                                class="text-black ml-auto">( {{ $jenis->jumlah }} )</span></a>
+                                @foreach ($kategori_menu as $kategori)
+                                    <li class="mb-1"><a href="{{ route('user.kategori.menu', ['id' => $kategori->id]) }}"
+                                            class="d-flex"><span>{{ $kategori->name }}</span> <span
+                                                class="text-black ml-auto">(
+                                                {{ $kategori->jumlah }} )</span></a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                        <div class="card border p-4 rounded mb-4">
+                            <h3 class="mb-3 h6 text-uppercase text-black d-block">Pengelola</h3>
+                            <ul class="list-unstyled mb-0">
+                                @foreach ($pengelolas as $pengelola)
+                                    <li class="mb-1"><a
+                                            href="{{ route('user.kategori.pengelola', ['id' => $pengelola->id]) }}"
+                                            class="d-flex"><span>{{ $pengelola->name }}</span>
                                     </li>
                                 @endforeach
                             </ul>

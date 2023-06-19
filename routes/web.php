@@ -45,8 +45,8 @@ Route::middleware(['auth','CekLevel:1'])->group(function () {
 Route::middleware(['auth','CekLevel:2'])->group(function () {
     Route::get('kasir-dashboard', [App\Http\Controllers\Kasir\HomeKasirController::class, 'index'])->name('dashboard.kasir');
     Route::get('top-up', [App\Http\Controllers\Kasir\SaldoController::class, 'index'])->name('top_up.kasir');
-    Route::get('/top-up{id}', [App\Http\Controllers\Kasir\SaldoController::class, 'add_topUp'])->name('add.top_up');
-    Route::post('/top-up{id}', [App\Http\Controllers\Kasir\SaldoController::class, 'update'])->name('update.top_up');
+    Route::get('/top-up/{id}', [App\Http\Controllers\Kasir\SaldoController::class, 'add_topUp'])->name('add.top_up');
+    Route::post('/top-up/{id}', [App\Http\Controllers\Kasir\SaldoController::class, 'update'])->name('update.top_up');
 
 });
 
@@ -67,6 +67,7 @@ Route::middleware(['auth', 'CekLevel:3'])->group(function () {
 Route::middleware(['auth','CekLevel:4'])->group(function () {
     Route::get('home', [App\Http\Controllers\User\HomeUserController::class, 'index'])->name('user.dashboard');
     Route::get('/kategori_menu/{id}',[App\Http\Controllers\JenisMenuController::class, 'menuByJenisMenu'])->name('user.kategori.menu');
+    Route::get('/kategori_pengelola/{id}', [App\Http\Controllers\JenisMenuController::class, 'menuByPengelola'])->name('user.kategori.pengelola');
     Route::post('home',[App\Http\Controllers\User\KeranjangController::class, 'simpan'])->name('user.keranjang.simpan');
     // Route::get('keranjang', [App\Http\Controllers\User\KeranjangController::class, 'index'])->name('user.keranjang');
     Route::resource('keranjang', KeranjangController::class);

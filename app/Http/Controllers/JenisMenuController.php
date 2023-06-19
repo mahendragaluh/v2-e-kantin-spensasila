@@ -27,4 +27,28 @@ class JenisMenuController extends Controller
         );
         return view('user.jenis_menu', $data);
     }
+
+    public function menuByPengelola($id)
+    {
+        //menampilkan data sesua kategori yang diminta user
+
+        $kat = DB::table('jenis_menus')
+            ->join('menus', 'menus.jenis_menu_id', '=', 'jenis_menus.id')
+            ->select(DB::raw('count(menus.jenis_menu_id) as jumlah, jenis_menus.*'))
+            ->groupBy('jenis_menus.id')
+            ->get();
+        $pen = DB::table('users')
+            ->where(['level_id' => '3'])
+            ->get();
+        $data = array(
+            'menus' => Menu::where('menus.user_id', $id)
+                ->join('jenis_menus', 'jenis_menus.id', '=', 'menus.jenis_menu_id')
+                ->select('menus.*', 'jenis_menus.name as kategori')
+                ->paginate(6),
+            // 'jenis_menus' => Pengelola::findOrFail($id),
+            'pengelolas' => $pen,
+            'kategori_menu' => $kat
+        );
+        return view('user.jenis_pengelola', $data);
+    }
 }

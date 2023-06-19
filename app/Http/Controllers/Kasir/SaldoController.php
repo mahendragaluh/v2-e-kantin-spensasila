@@ -66,14 +66,9 @@ class SaldoController extends Controller
     public function update(Request $request, string $id)
     {
         $users = User::findOrFail($id);
-        $saldos = Saldo::all()->first();
+        $saldos = Saldo::where('user_id', $id)->first();
 
-        if (empty($users)) {
-            Saldo::create([
-                'user_id' => $id,
-                'saldo' => $request->saldo,
-            ]);
-        } else {
+        if (!empty($saldos)) {
             $tambahSaldo = DB::table('saldos')->where('user_id',$id)->get();
             foreach($tambahSaldo as $tambah){
             $addSaldo = $tambah->saldo + $request->saldo;
@@ -84,6 +79,12 @@ class SaldoController extends Controller
                         'saldo' => $addSaldo
                     ]);
             }
+
+        } else {
+            Saldo::create([
+                'user_id' => $id,
+                'saldo' => $request->saldo,
+            ]);
         }
 
         if ($users) {
