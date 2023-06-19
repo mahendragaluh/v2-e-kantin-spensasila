@@ -20,7 +20,7 @@ class CekLevel
             return $next($request);
         }
         if (Auth::user()->level_id == '1') {
-            return redirect('/pengguna/user');
+            return redirect('/pengguna/users');
         } elseif (Auth::user()->level_id == '2') {
             return redirect('/top-up');
         } elseif (Auth::user()->level_id == '3') {

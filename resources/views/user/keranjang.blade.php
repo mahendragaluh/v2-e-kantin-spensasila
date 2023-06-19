@@ -112,6 +112,7 @@
                                             {{ number_format($subtotal, 2, ',', '.') }}</strong>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <a href="{{ route('user.checkout') }}"
