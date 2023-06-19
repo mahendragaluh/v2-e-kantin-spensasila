@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Pengelola;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Menu;
+use App\Models\JenisMenu;
 
 class HomePengelolaController extends Controller
 {
@@ -27,81 +29,51 @@ class HomePengelolaController extends Controller
 
     public function store_menu(Request $request)
     {
-        $this->validate($request, [
-            'nama_menu' => 'required',
-            'jenis_menu_id' => 'required',
-            'harga_menu' => 'required',
-            'foto_menu' => 'required',
-            'stok_menu' => 'required',
-        ]);
+        if($request->file('foto_menu')){
+            $file = $request->file('foto_menu')->store('menu','public');
 
-        $fotoMenu = $request->foto_menu;
-        $extension = $fotoMenu->getClientOriginalExtension();
-        $namaFoto = 'FotoMenu_' . date('YmdHis') . '.' . $extension;
+            Menu::create([
+                'nama_menu' => $request->nama_menu,
+                'jenis_menu_id' => $request->jenis_menu_id,
+                'harga_menu' => $request->harga_menu,
+                'foto_menu' => $file,
+                'stok_menu' => $request->stok_menu,
+            ]);
 
-        $menus = new Menu;
-        $menus->nama_menu = $request->nama_menu;
-        $menus->jenis_menu_id = $request->jenis_menu_id;
-        $menus->harga_menu = $request->harga_menu;
-        $menus->foto_menu = $namaFoto;
-        $menus->stok_menu = $request->stok_menu;
-
-        $fotoMenu->move(public_path().'/assets/img/menu', $namaFoto);
-        $menus->save();
-
-        if ($menus) {
-            return redirect()
-                ->back();
-        } else {
-            return redirect()
-                ->back();
+        return redirect()->back();
         }
     }
+
+    public function edit_menu($id)
+    {
+        $data = array(
+            'menus' => Menu::findOrFail($id),
+            'jenis_menus' => JenisMenu::all(),
+        );
+        return view('pengelola.editMenu',$data);
+    }
+
     public function update_menu(Request $request, $id)
     {
-        $this->validate($request, [
-            'nama_menu' => 'required',
-            'jenis_menu_id' => 'required',
-            'harga_menu' => 'required',
-            'stok_menu' => 'required',
-        ]);
-
         $menus = Menu::findOrFail($id);
-        $awal = $menus->foto_menu;
 
-        if ($request->foto_menu) {
-            $request->foto_menu->move(public_path().'/assets/img/menu', $awal);
+        if( $request->file('foto_menu')){
+            Storage::delete('public/'.$menus->foto_menu);
+            $file = $request->file('foto_menu')->store('menu','public');
+            $menus->foto_menu = $file;
         }
 
         $menus->nama_menu = $request->nama_menu;
         $menus->jenis_menu_id = $request->jenis_menu_id;
         $menus->harga_menu = $request->harga_menu;
-        $menus->foto_menu = $awal;
         $menus->stok_menu = $request->stok_menu;
+
+
         $menus->save();
-
-        // $dataUpdate = [
-        //     'nama_menu' => $request['nama_menu'],
-        //     'jenis_menu_id' => $request['jenis_menu_id'],
-        //     'harga_menu' => $request['harga_menu'],
-        //     'foto_menu' => $awal,
-        //     'stok_menu' => $request['stok_menu'],
-        // ];
-
-        // $menus->update([
-        //     'nama_menu' => $request->nama_menu,
-        //     'jenis_menu_id' => $request->jenis_menu,
-        //     'harga_menu' => $request->harga_menu,
-        //     'foto_menu' => $awal,
-        //     'stok_menu' => $request->stok_menu,
-
-        // ]);
-
-        // $menus->update($dataUpdate);
 
         if ($menus) {
             return redirect()
-                ->back();
+                ->route('pengelola.menu');
         } else {
             return redirect()
                 ->back();

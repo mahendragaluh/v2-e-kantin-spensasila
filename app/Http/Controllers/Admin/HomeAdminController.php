@@ -54,9 +54,11 @@ class HomeAdminController extends Controller
     {
         $addUsers = new User;
         $addUsers->level_id = $request->level_id;
+        $addUsers->id_siswa = $request->id_siswa;
+        $addUsers->nisn = $request->nisn;
         $addUsers->name = $request->name;
-        $addUsers->username = $request->username;
-        $addUsers->email = $request->email;
+        $addUsers->kelas = $request->kelas;
+        $addUsers->no_hp = $request->no_hp;
         $addUsers->password = Hash::make($request->password);
         $addUsers->save();
 
@@ -117,8 +119,14 @@ class HomeAdminController extends Controller
 
     public function menu()
     {
-        $menus = Menu::all();
-        return view('admin.menu', compact('menus'));
+        $menus = DB::table('menus')
+                ->join('jenis_menus','jenis_menus.id','=','menus.jenis_menu_id')
+                ->select('menus.*','jenis_menus.name as nama_jm')
+                ->get();
+        $data = array(
+            'menus' => $menus
+        );
+        return view('admin.menu', $data);
     }
 
     public function store_menu(Request $request)
@@ -153,6 +161,16 @@ class HomeAdminController extends Controller
                 ->back();
         }
     }
+
+    public function edit_menu($id)
+    {
+        $data = array(
+            'menus' => Menu::findOrFail($id),
+            'jenis_menus' => JenisMenu::all(),
+        );
+        return view('admin.editMenu',$data);
+    }
+
     public function update_menu(Request $request, $id)
     {
         $this->validate($request, [

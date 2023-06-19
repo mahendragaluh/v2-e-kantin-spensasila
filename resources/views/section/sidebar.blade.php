@@ -39,7 +39,7 @@
                with font-awesome or any other icon font library -->
 
                 @if (Auth::user()->level_id == '1')
-                    <li class="nav-item {{ request()->is('dashboard-admin*') ? 'active menu-open' : '' }}">
+                    {{-- <li class="nav-item {{ request()->is('dashboard-admin*') ? 'active menu-open' : '' }}">
                         <a href="/dashboard-admin"
                             class="nav-link {{ request()->is('dashboard-admin*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -47,7 +47,7 @@
                                 Dashboard
                             </p>
                         </a>
-                    </li>
+                    </li> --}}
                     {{-- <li class="nav-item {{ request()->is('menu*') ? 'active menu-open' : '' }}">
                         <a href="/menu" class="nav-link {{ request()->is('menu*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-utensils"></i>

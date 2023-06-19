@@ -42,7 +42,7 @@
                                         <tbody>
                                             <?php $subtotal=0; foreach($keranjangs as $keranjang): ?>
                                             <tr>
-                                                <td><img src="{{ asset('/assets/img/menu/' . $keranjang->foto_menu) }}"
+                                                <td><img src="{{ asset('storage/' . $keranjang->foto_menu) }}"
                                                         style="width: 150px" alt="Foto Menu"></td>
                                                 <td>{{ $keranjang->nama_menu }}</td>
                                                 <td>Rp{{ number_format($keranjang->harga_menu, 2, ',', '.') }}</td>

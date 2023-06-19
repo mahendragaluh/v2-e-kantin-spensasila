@@ -45,6 +45,7 @@ Route::middleware(['auth','CekLevel:1'])->group(function () {
 Route::middleware(['auth','CekLevel:2'])->group(function () {
     Route::get('kasir-dashboard', [App\Http\Controllers\Kasir\HomeKasirController::class, 'index'])->name('dashboard.kasir');
     Route::get('top-up', [App\Http\Controllers\Kasir\SaldoController::class, 'index'])->name('top_up.kasir');
+    Route::get('/top-up{id}', [App\Http\Controllers\Kasir\SaldoController::class, 'add_topUp'])->name('add.top_up');
     Route::post('/top-up{id}', [App\Http\Controllers\Kasir\SaldoController::class, 'update'])->name('update.top_up');
 
 });
@@ -53,6 +54,7 @@ Route::middleware(['auth', 'CekLevel:3'])->group(function () {
     Route::get('dashboard-pengelola', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'index'])->name('pengelola.dashboard');
     Route::get('menu', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'menu'])->name('pengelola.menu');
     Route::post('/menu', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'store_menu'])->name('pengelola.store.menu');
+    Route::get('/menu{id}', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'edit_menu'])->name('pengelola.edit.menu');
     Route::post('/menu{id}', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'update_menu'])->name('pengelola.update.menu');
     Route::delete('/menu{id}', [App\Http\Controllers\Pengelola\HomePengelolaController::class, 'destroy_menu'])->name('pengelola.destroy.menu');
 

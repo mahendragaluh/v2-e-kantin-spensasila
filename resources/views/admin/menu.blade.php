@@ -119,12 +119,12 @@
                                             <div class="col-sm-8">
                                                 <select class="form-control" id="jenisMenu" name="jenis_menu">
                                                     <option>Jenis Menu</option>
-                                                    <option value="1"
-                                                        {{ $menu->jenis_menu_id == '1' ? 'selected' : '' }}>Makanan</option>
-                                                    <option value="2"
-                                                        {{ $menu->jenis_menu_id == '2' ? 'selected' : '' }}>Minuman</option>
-                                                    <option value="3"
-                                                        {{ $menu->jenis_menu_id == '3' ? 'selected' : '' }}>Snack</option>
+                                                    <option value="1" {{ $menu->jenis_menu_id == '1' ? 'selected' : '' }}>
+                                                        Makanan</option>
+                                                    <option value="2" {{ $menu->jenis_menu_id == '2' ? 'selected' : '' }}>
+                                                        Minuman</option>
+                                                    <option value="3" {{ $menu->jenis_menu_id == '3' ? 'selected' : '' }}>
+                                                        Snack</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -220,9 +220,8 @@
                                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                                 action="{{ route('destroy.menu', $menu->id) }}"
                                                                 method="POST">
-                                                                <a href="" class="btn btn-sm btn-primary mb-1 mt-1"
-                                                                    data-toggle="modal"
-                                                                    data-target="#modal-edit-menu-{{ $menu->id }}">EDIT</a>
+                                                                <a href="{{ route('edit.menu', ['id' => $menu->id]) }}"
+                                                                    class="btn btn-sm btn-primary mb-1 mt-1">EDIT</a>
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"

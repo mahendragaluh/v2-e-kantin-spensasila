@@ -209,7 +209,7 @@
                                                 @foreach ($menus as $menu)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td><img src="{{ asset('/assets/img/menu/' . $menu->foto_menu) }}"
+                                                        <td><img src="{{ asset('storage/' . $menu->foto_menu) }}"
                                                                 style="width: 150px" alt="Foto Menu"></td>
                                                         <td>{{ $menu->nama_menu }}</td>
                                                         <td>{{ $menu->jenis_menu_id }}</td>
@@ -226,9 +226,8 @@
                                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                                 action="{{ route('pengelola.destroy.menu', $menu->id) }}"
                                                                 method="POST">
-                                                                <a href="" class="btn btn-sm btn-primary mb-1 mt-1"
-                                                                    data-toggle="modal"
-                                                                    data-target="#modal-edit-menu-{{ $menu->id }}">EDIT</a>
+                                                                <a href="{{ route('pengelola.edit.menu', ['id' => $menu->id]) }}"
+                                                                    class="btn btn-sm btn-primary mb-1 mt-1">EDIT</a>
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"

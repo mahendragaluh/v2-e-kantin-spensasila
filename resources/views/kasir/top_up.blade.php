@@ -96,9 +96,8 @@
                                                     <td>{{ $user->kelas }}</td>
                                                     <td>{{ $user->no_hp }}</td>
                                                     <td>
-                                                        <a href="" class="btn btn-sm btn-primary mb-1 mt-1"
-                                                            data-toggle="modal"
-                                                            data-target="#modal-topUp-{{ $user->id }}">Top Up</a>
+                                                        <a href="{{ route('add.top_up', ['id' => $user->id]) }}"
+                                                            class="btn btn-sm btn-primary mb-1 mt-1">Top Up</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

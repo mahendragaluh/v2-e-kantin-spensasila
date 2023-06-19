@@ -30,7 +30,7 @@
                                 <div class="col-6 col-sm-6 col-lg-4 mb-1">
                                     <div class="card text-center border">
                                         <img class="card-img-top" style="height: 150px"
-                                            src="{{ asset('/assets/img/menu/' . $menu->foto_menu) }}" alt="Foto Menu">
+                                            src="{{ asset('storage/' . $menu->foto_menu) }}" alt="Foto Menu">
                                         <div class="card-body pt-2">
                                             <div class="row-md-2">
                                                 <div class="text-center">

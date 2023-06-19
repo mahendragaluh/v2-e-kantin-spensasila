@@ -26,13 +26,27 @@
             <!-- Notifications Dropdown Menu -->
             <?php
             $user_id = Auth::user()->id;
+            $saldo = DB::table('saldos')
+                ->select('saldos.*')
+                ->where('user_id', $user_id)
+                ->first();
+            ?>
+
+            <li class="nav-item">
+                <a class="nav-link " href="#">
+                    Saldo: <b>Rp{{ number_format($saldo->saldo) }}</b>
+                </a>
+            </li>
+
+            <?php
+            $user_id = Auth::user()->id;
             $total_keranjang = DB::table('keranjangs')
                 ->select(DB::raw('count(id) as jumlah'))
                 ->where('user_id', $user_id)
                 ->first();
             ?>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('keranjang.index')}}" role="button">
+                <a class="nav-link" href="{{ route('keranjang.index') }}" role="button">
                     <i class="fas fa-cart-plus"></i>
                     <span class="badge badge-primary navbar-badge ms-2">{{ $total_keranjang->jumlah }}</span>
                 </a>
@@ -46,13 +60,13 @@
                 ->first();
             ?>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('user.order')}}" role="button">
+                <a class="nav-link" href="{{ route('user.order') }}" role="button">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge badge-primary navbar-badge ms-2">{{ $total_order->jumlah }}</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('user.transaksi')}}" role="button">
+                <a class="nav-link" href="{{ route('user.transaksi') }}" role="button">
                     <i class="fas fa-receipt"></i>
                 </a>
             </li>
@@ -62,11 +76,14 @@
                     <i class="fas fa-user"></i>
                 </a>
                 <ul aria-labelledby="dropdownKanan" class="dropdown-menu border-0 shadow">
+                    <li><a href="#" class="dropdown-item">
+                            <i class="fas fa-user mr-2"></i>{{ Auth::user()->name }}</a>
+                    </li>
                     <li class="dropdown-divider"></li>
 
                     <li><a href="{{ route('logout') }}" class="dropdown-item"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
                         </a>
                     </li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

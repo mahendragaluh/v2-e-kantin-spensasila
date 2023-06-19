@@ -66,6 +66,20 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-sm-12 col-form-label" for="IdSiswa">ID Siswa</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="IdSiswa" name="id_siswa"
+                                                value="" placeholder="Isi ID Siswa">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12 col-form-label" for="NISN">NISN</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="NISN" name="nisn"
+                                                value="" placeholder="Isi NISN">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-sm-12 col-form-label" for="NamaLengkap">Nama Lengkap</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control" id="NamaLengkap" name="name"
@@ -73,17 +87,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-12 col-form-label" for="UserName">Username</label>
+                                        <label class="col-sm-12 col-form-label" for="Kelas">Kelas</label>
                                         <div class="col-sm-12">
-                                            <input type="username" class="form-control" id="UserName" name="username"
-                                                value="" placeholder="Isi Username">
+                                            <input type="text" class="form-control" id="Kelas" name="kelas"
+                                                value="" placeholder="Isi Kelas">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-12 col-form-label" for="Email">Email</label>
+                                        <label class="col-sm-12 col-form-label" for="NoHp">No. Hp</label>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control" id="Email" name="email"
-                                                value="" placeholder="Isi Email">
+                                            <input type="text" class="form-control" id="NoHp" name="no_hp"
+                                                value="" placeholder="Isi No. Hp">
                                         </div>
                                     </div>
                                     <div class="form-group">

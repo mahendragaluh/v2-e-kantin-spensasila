@@ -52,9 +52,12 @@ class SaldoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function add_topUp(string $id)
     {
-        //
+        $data = array(
+            'users' => User::findOrFail($id),
+        );
+        return view('kasir.add_top_up',$data);
     }
 
     /**
@@ -62,35 +65,30 @@ class SaldoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this->validate($request, [
-            'user_id' => 'required',
-            'saldo' => 'required',
-        ]);
+        $users = User::findOrFail($id);
+        $saldos = Saldo::all()->first();
 
-        // $users = User::findOrFail($id)
-        $saldos = DB::table('users')
-        ->join('saldos', 'saldos.user_id', '=', $id)
-        ->select('users.*')
-        ->get();
-        // $saldos = new Saldo;
+        if ($saldos->saldo->isEmpty($saldos->saldo)) {
+            Saldo::create([
+                'user_id' => $id,
+                'saldo' => $request->saldo,
+            ]);
+        } else {
+            $tambahSaldo = DB::table('saldos')->where('user_id',$id)->get();
+            foreach($tambahSaldo as $tambah){
+            $addSaldo = $tambah->saldo + $request->saldo;
 
-        $saldos->user_id = $id;
-        $saldos->saldo = $request->saldo;
-        // $dataUpdate = [
-        //     'user_id' => $request[$cekId],
-        //     'saldo' => $request['saldo'],
-        // ];
+            $update = DB::table('saldos')
+                    ->where('user_id',$id)
+                    ->update([
+                        'saldo' => $addSaldo
+                    ]);
+            }
+        }
 
-        $saldos->save();
-        // $saldos->save($dataUpdate);
-        // Saldo::create([
-        // 'user_id' => $id,
-        // 'saldo' => $request->saldo,
-        // ]);
-
-        if ($saldos) {
+        if ($users) {
             return redirect()
-                ->back();
+            ->route('top_up.kasir');
         } else {
             return redirect()
                 ->back();

@@ -49,7 +49,7 @@
                                                 <tr>
                                                     <th>Metode Pembayaran</th>
                                                     <td>:</td>
-                                                    <td>{{$order->pembayaran}}</td>
+                                                    <td>{{ $order->pembayaran }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Total Pembayaran</th>
@@ -76,12 +76,13 @@
                                                 <tbody>
                                                     @foreach ($detail as $o)
                                                         <tr>
-                                                            <td><img src="{{ asset('/assets/img/menu/' . $o->foto_menu) }}" alt="Foto Menu"
-                                                                    srcset="" width="150px"></td>
+                                                            <td><img src="{{ asset('storage/' . $o->foto_menu) }}"
+                                                                    alt="Foto Menu" srcset="" width="150px"></td>
                                                             <td>{{ $o->nama_menu }}</td>
                                                             <td>Rp{{ number_format($o->harga_menu, 2, ',', '.') }}</td>
                                                             <td>{{ $o->qty }}</td>
-                                                            <td>Rp{{ number_format($o->qty * $o->harga_menu, 2, ',', '.') }}</td>
+                                                            <td>Rp{{ number_format($o->qty * $o->harga_menu, 2, ',', '.') }}
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
