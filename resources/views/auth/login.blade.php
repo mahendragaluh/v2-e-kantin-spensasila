@@ -47,8 +47,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group form-group mb-3">
-                        <input type="nisn" name="nisn" class="form-control" value="{{ old('nisn') }}"
-                            placeholder="NISN" required>
+                        <input type="username_nisn" name="username_nisn" class="form-control"
+                            value="{{ old('username_nisn') }}" placeholder="Username atau NISN" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -74,15 +74,6 @@
                     </div>
                     <!-- /.social-auth-links -->
                 </form>
-
-                <p class="mb-0">
-                    <a href="/register" class="text-center">Belum memiliki akun? Daftar sekarang!</a>
-                </p>
-
-                <p class="mb-1">
-                    <a href="#">Lupa Password?</a>
-                </p>
-
             </div>
             <!-- /.login-card-body -->
         </div>

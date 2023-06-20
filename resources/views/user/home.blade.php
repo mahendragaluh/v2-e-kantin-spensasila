@@ -44,9 +44,15 @@
                                                         <span class="badge bg-danger">Habis</span> <br>
                                                         <button type="submit" class="btn btn-primary mt-2"
                                                             disabled>Pesan</button>
+                                                        {{-- @elseif ($menu->stok >= $menu->stok_menu)
+                                                        <span class="">Stok {{ $menu->stok_menu }}</span> <br>
+                                                        <button type="submit" class="btn btn-primary mt-2"
+                                                            disabled>Pesan</button> --}}
                                                     @else
                                                         <span class="">Stok {{ $menu->stok_menu }}</span>
-                                                        <form action="{{ route('user.keranjang.simpan') }}" method="post">
+                                                        <form
+                                                            action="{{ route('user.keranjang.simpan', ['id' => $menu->id]) }}"
+                                                            method="post">
                                                             @csrf
                                                             @if (Route::has('login'))
                                                                 @auth

@@ -34,7 +34,7 @@
 
             <li class="nav-item">
                 <a class="nav-link " href="#">
-                    Saldo: <b>Rp{{ number_format($saldo->saldo) }}</b>
+                    Saldo: <b>Rp{{ number_format($saldo->saldo, 2, ',', '.') }}</b>
                 </a>
             </li>
 

@@ -21,50 +21,6 @@
             </div>
             <!-- /.content-header -->
 
-            @foreach ($users as $user)
-                <div class="modal fade" id="modal-topUp-{{ $user->id }}">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form onsubmit="return confirm('Apakah Data Yang Di Input Sudah Benar ?');" method="POST"
-                                action="{{ route('update.top_up', $user->id) }}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Top Up</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label" for="nisn">NISN</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="nisn" name="nisn"
-                                                    value="{{ $user->nisn }}" placeholder="" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label" for="saldo">Saldo</label>
-                                            <div class="col-sm-8">
-                                                <input type="number" class="form-control" id="saldo" name="saldo"
-                                                    value="" placeholder="Isi Saldo">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer justify-content-between">
-                                    <a class="btn btn-default" data-dismiss="modal">Tutup</a>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-            @endforeach
-
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
@@ -91,7 +47,7 @@
                                             @foreach ($users as $user)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $user->nisn }}</td>
+                                                    <td>{{ $user->username_nisn }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->kelas }}</td>
                                                     <td>{{ $user->no_hp }}</td>

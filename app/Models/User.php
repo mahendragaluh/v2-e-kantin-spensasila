@@ -20,10 +20,11 @@ class User extends Authenticatable
     protected $fillable = [
         'level_id',
         'id_siswa',
-        'nisn',
+        'username_nisn',
         'name',
         'kelas',
         'no_hp',
+        'password',
     ];
 
     /**

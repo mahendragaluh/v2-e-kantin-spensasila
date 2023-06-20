@@ -61,16 +61,30 @@
                                                         <button class="btn btn-outline-primary btn-sm" disabled="true">
                                                             {{ number_format($keranjang->qty) }}
                                                         </button>
-                                                        <form
-                                                            action="{{ route('keranjang.update', $keranjang->id_keranjang) }}"
-                                                            method="post">
-                                                            @method('patch')
-                                                            @csrf()
-                                                            <input type="hidden" name="param" value="tambah">
-                                                            <button class="btn btn-primary btn-sm">
-                                                                +
-                                                            </button>
-                                                        </form>
+                                                        @if ($keranjang->qty >= $keranjang->stock)
+                                                            <form
+                                                                action="{{ route('keranjang.update', $keranjang->id_keranjang) }}"
+                                                                method="post">
+                                                                @method('patch')
+                                                                @csrf()
+                                                                <input type="hidden" name="param" value="tambah">
+                                                                <button class="btn btn-primary btn-sm" disabled>
+                                                                    +
+                                                                </button>
+                                                            </form>
+                                                        @else
+                                                            <form
+                                                                action="{{ route('keranjang.update', $keranjang->id_keranjang) }}"
+                                                                method="post">
+                                                                @method('patch')
+                                                                @csrf()
+                                                                <input type="hidden" name="param" value="tambah">
+                                                                <button class="btn btn-primary btn-sm">
+                                                                    +
+                                                                </button>
+                                                            </form>
+                                                        @endif
+
                                                     </div>
                                                 </td>
                                                 <?php

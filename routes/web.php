@@ -29,6 +29,7 @@ Route::middleware(['auth','CekLevel:1'])->group(function () {
 
     Route::get('pengguna/users', [App\Http\Controllers\Admin\HomeAdminController::class, 'users'])->name('pengguna.users');
     Route::post('pengguna/users', [App\Http\Controllers\Admin\HomeAdminController::class, 'create_users'])->name('create.users');
+    Route::delete('pengguna/users/{id}', [App\Http\Controllers\Admin\HomeAdminController::class, 'destroy_users'])->name('destroy.users');
 
     Route::get('pengguna/level', [App\Http\Controllers\Admin\HomeAdminController::class, 'level'])->name('pengguna.level');
     Route::post('/pengguna/level', [App\Http\Controllers\Admin\HomeAdminController::class, 'store_level'])->name('store.level');
@@ -70,7 +71,7 @@ Route::middleware(['auth','CekLevel:4'])->group(function () {
     Route::get('home', [App\Http\Controllers\User\HomeUserController::class, 'index'])->name('user.dashboard');
     Route::get('/kategori_menu/{id}',[App\Http\Controllers\JenisMenuController::class, 'menuByJenisMenu'])->name('user.kategori.menu');
     Route::get('/kategori_pengelola/{id}', [App\Http\Controllers\JenisMenuController::class, 'menuByPengelola'])->name('user.kategori.pengelola');
-    Route::post('home',[App\Http\Controllers\User\KeranjangController::class, 'simpan'])->name('user.keranjang.simpan');
+    Route::post('home/{id}',[App\Http\Controllers\User\KeranjangController::class, 'simpan'])->name('user.keranjang.simpan');
     // Route::get('keranjang', [App\Http\Controllers\User\KeranjangController::class, 'index'])->name('user.keranjang');
     Route::resource('keranjang', KeranjangController::class);
     Route::get('/checkout',[App\Http\Controllers\User\CheckoutController::class, 'index'])->name('user.checkout');

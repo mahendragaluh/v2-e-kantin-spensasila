@@ -39,8 +39,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label" for="nisn">NISN</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="nisn" name="nisn"
-                                                    value="{{ $users->nisn }}" placeholder="" disabled>
+                                                <input type="text" class="form-control" id="username_nisn"
+                                                    name="username_nisn" value="{{ $users->username_nisn }}" placeholder=""
+                                                    disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">

@@ -5,7 +5,7 @@ namespace App\Imports;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class UsersImport implements ToModel, WithHeadingRow
 {
@@ -19,7 +19,7 @@ class UsersImport implements ToModel, WithHeadingRow
         return new User([
             'level_id' => $row['level_id'],
             'id_siswa' => $row['id_siswa'],
-            'nisn' => $row['nisn'],
+            'username_nisn' => $row['username_nisn'],
             'name'     => $row['name'],
             'kelas' => $row['kelas'],
             'no_hp' => $row['no_hp'],

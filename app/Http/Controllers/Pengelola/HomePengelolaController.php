@@ -24,7 +24,11 @@ class HomePengelolaController extends Controller
 
     public function menu()
     {
-        $menus = Menu::all();
+        $menus = DB::table('menus')
+                ->join('jenis_menus', 'jenis_menus.id', '=', 'menus.jenis_menu_id')
+                ->select('menus.*', 'jenis_menus.name as kategori')
+                ->get();
+
         return view('pengelola.menu', compact('menus'));
     }
 

@@ -55,7 +55,7 @@ class HomeAdminController extends Controller
         $addUsers = new User;
         $addUsers->level_id = $request->level_id;
         $addUsers->id_siswa = $request->id_siswa;
-        $addUsers->nisn = $request->nisn;
+        $addUsers->username_nisn = $request->username_nisn;
         $addUsers->name = $request->name;
         $addUsers->kelas = $request->kelas;
         $addUsers->no_hp = $request->no_hp;
@@ -63,6 +63,20 @@ class HomeAdminController extends Controller
         $addUsers->save();
 
         if ($addUsers) {
+            return redirect()
+                ->back();
+        } else {
+            return redirect()
+                ->back();
+        }
+    }
+
+    public function destroy_users($id)
+    {
+        $users = User::findOrFail($id);
+        $users->delete();
+
+        if ($users) {
             return redirect()
                 ->back();
         } else {
