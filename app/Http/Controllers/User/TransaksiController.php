@@ -19,7 +19,8 @@ class TransaksiController extends Controller
                     ->join('metode_pembayarans','metode_pembayarans.id','=','orders.metode_pembayaran_id')
                     ->orderBy('updated_at', 'desc')
                     ->select('orders.*', 'status_orders.name', 'users.name as nama_pemesan', 'metode_pembayarans.name as pembayaran')
-                    ->where('orders.keterangan', "Pesanan Siap")
+                    ->where('orders.keterangan', "Selesai")
+                    ->orWhere('orders.keterangan', "Pesanan Siap")
                     ->where('orders.user_id', $user_id)->get();
         $data = array(
             'orderbaru' => $order

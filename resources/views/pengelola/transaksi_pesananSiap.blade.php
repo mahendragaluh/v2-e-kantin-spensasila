@@ -9,7 +9,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Pesanan Baru</h1>
+                            <h1 class="m-0">Pesanan Siap</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -35,14 +35,14 @@
                                     <table id="datatabel-users" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th style="width: 4%">No.</th>
-                                                <th style="width: 12%">Invoice</th>
-                                                <th style="width: 12%">Pemesan</th>
-                                                <th style="width: 8%">Pembayaran</th>
-                                                <th style="width: 10%">Subtotal</th>
+                                                <th style="width: 9%">No.</th>
+                                                <th style="width: 15%">Invoice</th>
+                                                <th style="width: 15%">Pemesan</th>
+                                                <th style="width: 13%">Pembayaran</th>
+                                                <th style="width: 13%">Subtotal</th>
                                                 <th style="width: 10%">Status Order</th>
                                                 <th style="width: 10%">Keterangan</th>
-                                                <th style="width: 10%">#</th>
+                                                <th style="width: 18%">#</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -54,13 +54,15 @@
                                                     <td>{{ $o->pembayaran }}</td>
                                                     <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
                                                     <td><span class="badge bg-success">{{ $o->name }}</span></td>
-                                                    <td><span class="badge bg-danger">{{ $o->keterangan }}</span></td>
+                                                    <td><span class="badge bg-warning">{{ $o->keterangan }}</span></td>
                                                     <td>
-                                                        <a href="{{ route('pengelola.transaksi.detail', ['id' => $o->id]) }}"
-                                                            class="btn btn-sm btn-primary">
-                                                            <i class="fas fa-check"></i>
-                                                            Proses
-                                                        </a>
+                                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                            action="{{ route('pengelola.transaksi.konfirmasiPesananSiap', $o->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-warning mb-1 mt-1">Diambil</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach

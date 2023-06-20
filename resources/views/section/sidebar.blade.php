@@ -106,7 +106,7 @@
                         </a>
                     </li>
                     <li
-                        class="nav-item {{ request()->is('transaksi/pesanan-baru') || request()->is('transaksi/selesai') ? 'active menu-open' : '' }}">
+                        class="nav-item {{ request()->is('transaksi/pesanan-baru') || request()->is('transaksi/selesai') || request()->is('transaksi/pesanan-siap') ? 'active menu-open' : '' }}">
                         <a href="#" class="nav-link {{ request()->is('transaksi*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-receipt"></i>
                             <p>
@@ -125,10 +125,19 @@
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <a href="{{ route('pengelola.transaksi.pesananSiap') }}"
+                                    class="nav-link {{ request()->is('transaksi/pesanan-siap') ? 'active' : '' }}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Pesanan Siap</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
                                 <a href="{{ route('pengelola.transaksi.selesai') }}"
                                     class="nav-link {{ request()->is('transaksi/selesai') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Selesai</p>
+                                    <p>Pesanan Selesai</p>
                                 </a>
                             </li>
                         </ul>

@@ -61,6 +61,8 @@ Route::middleware(['auth', 'CekLevel:3'])->group(function () {
     Route::get('transaksi/pesanan-baru', [App\Http\Controllers\Pengelola\TransaksiController::class, 'index'])->name('pengelola.transaksi');
     Route::get('transaksi/pesanan-baru/detail/{id}', [App\Http\Controllers\Pengelola\TransaksiController::class, 'detail'])->name('pengelola.transaksi.detail');
     Route::get('transaksi/konfirmasi/{id}', [App\Http\Controllers\Pengelola\TransaksiController::class, 'konfirmasi'])->name('pengelola.transaksi.konfirmasi');
+    Route::get('transaksi/pesanan-siap', [App\Http\Controllers\Pengelola\TransaksiController::class, 'transaksi_pesananSiap'])->name('pengelola.transaksi.pesananSiap');
+    Route::post('transaksi/pesanan-siap/{id}', [App\Http\Controllers\Pengelola\TransaksiController::class, 'konfirmasi_pesananSiap'])->name('pengelola.transaksi.konfirmasiPesananSiap');
     Route::get('transaksi/selesai', [App\Http\Controllers\Pengelola\TransaksiController::class, 'transaksi_selesai'])->name('pengelola.transaksi.selesai');
 });
 

@@ -43,7 +43,7 @@
                                                 <tr>
                                                     <th>Keterangan</th>
                                                     <td>:</td>
-                                                    <td><span class="badge bg-warning">{{ $order->keterangan }}</span></td>
+                                                    <td><span class="badge bg-danger">{{ $order->keterangan }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>No Invoice</th>

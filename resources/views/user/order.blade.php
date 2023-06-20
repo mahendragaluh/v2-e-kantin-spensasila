@@ -53,7 +53,7 @@
                                                 <td>{{ $o->pembayaran }}</td>
                                                 <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
                                                 <td><span class="badge bg-success">{{ $o->name }}</span></td>
-                                                <td><span class="badge bg-warning">{{ $o->keterangan }}</span></td>
+                                                <td><span class="badge bg-danger">{{ $o->keterangan }}</span></td>
                                                 <td>
                                                     <a href="{{ route('user.order.detail', ['id' => $o->id]) }}"
                                                         class="btn btn-sm btn-primary">

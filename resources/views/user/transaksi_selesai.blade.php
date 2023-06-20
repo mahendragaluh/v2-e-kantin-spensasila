@@ -51,7 +51,11 @@
                                                 <td>{{ $o->pembayaran }}</td>
                                                 <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
                                                 <td><span class="badge bg-success">{{ $o->name }}</span></td>
-                                                <td><span class="badge bg-success">{{ $o->keterangan }}</span></td>
+                                                @if ($o->keterangan == 'Selesai')
+                                                    <td><span class="badge bg-success">{{ $o->keterangan }}</span></td>
+                                                @else
+                                                    <td><span class="badge bg-warning">{{ $o->keterangan }}</span></td>
+                                                @endif
                                                 <td>{{ Carbon\Carbon::parse($o->updated_at)->format('d F Y H:i') }}</td>
                                             </tr>
                                         @endforeach
