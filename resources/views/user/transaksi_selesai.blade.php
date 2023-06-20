@@ -37,8 +37,9 @@
                                             <th style="width: 9%">No.</th>
                                             <th style="width: 15%">Invoice</th>
                                             <th style="width: 13%">Pembayaran</th>
-                                            <th style="width: 15%">Subtotal</th>
-                                            <th style="width: 15%">Status Order</th>
+                                            <th style="width: 13%">Subtotal</th>
+                                            <th style="width: 10%">Status Order</th>
+                                            <th style="width: 10%">Keterangan</th>
                                             <th style="width: 18%">Waktu Bayar</th>
                                         </tr>
                                     </thead>
@@ -50,6 +51,7 @@
                                                 <td>{{ $o->pembayaran }}</td>
                                                 <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
                                                 <td><span class="badge bg-success">{{ $o->name }}</span></td>
+                                                <td><span class="badge bg-success">{{ $o->keterangan }}</span></td>
                                                 <td>{{ Carbon\Carbon::parse($o->updated_at)->format('d F Y H:i') }}</td>
                                             </tr>
                                         @endforeach
@@ -61,6 +63,7 @@
                                             <th>Pembayaran</th>
                                             <th>Subtotal</th>
                                             <th>Status Order</th>
+                                            <th>Keterangan</th>
                                             <th>Waktu Bayar</th>
                                         </tr>
                                     </tfoot>

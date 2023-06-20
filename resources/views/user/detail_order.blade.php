@@ -37,6 +37,11 @@
                                         <div class="col-md-8">
                                             <table>
                                                 <tr>
+                                                    <th>Keterangan</th>
+                                                    <td>:</td>
+                                                    <td><span class="badge bg-warning">{{ $order->keterangan }}</span></td>
+                                                </tr>
+                                                <tr>
                                                     <th>No Invoice</th>
                                                     <td>:</td>
                                                     <td>{{ $order->invoice }}</td>
@@ -44,7 +49,7 @@
                                                 <tr>
                                                     <th>Status Pesanan</th>
                                                     <td>:</td>
-                                                    <td><span class="badge bg-danger">{{ $order->status }}</span></td>
+                                                    <td><span class="badge bg-success">{{ $order->status }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Metode Pembayaran</th>

@@ -21,7 +21,7 @@ class OrderController extends Controller
                     ->join('metode_pembayarans','metode_pembayarans.id','=','orders.metode_pembayaran_id')
                     ->select('orders.*', 'status_orders.name', 'metode_pembayarans.name as pembayaran')
                     ->orderBy('created_at', 'desc')
-                    ->where('orders.status_order_id',1)
+                    ->where('orders.keterangan',"Sedang Diproses")
                     ->where('orders.user_id',$user_id)->get();
         $data = array(
             'order' => $order,
@@ -61,8 +61,9 @@ class OrderController extends Controller
             'invoice' => $request->invoice,
             'user_id' => $userid,
             'subtotal'=> $request->subtotal,
-            'status_order_id' => 1,
-            'metode_pembayaran_id' => $request->metode_pembayaran_id
+            'status_order_id' => 2,
+            'metode_pembayaran_id' => $request->metode_pembayaran_id,
+            'keterangan' => 'Sedang Diproses',
         ]);
 
         $order = DB::table('orders')->where('invoice',$request->invoice)->first();
@@ -78,6 +79,31 @@ class OrderController extends Controller
         }
         //lalu hapus data produk pada keranjang pembeli
         DB::table('keranjangs')->where('user_id',$userid)->delete();
+
+        $kurangistok = DB::table('order_details')->where('order_id',$order->id)->get();
+        foreach($kurangistok as $kurang){
+            $ambilmenu = DB::table('menus')->where('id',$kurang->menu_id)->first();
+            $ubahstok = $ambilmenu->stok_menu - $kurang->qty;
+
+            $update = DB::table('menus')
+                    ->where('id',$kurang->menu_id)
+                    ->update([
+                        'stok_menu' => $ubahstok
+                    ]);
+        }
+
+        $kurangiSaldo = DB::table('orders')->where('id',$order->id)->get();
+        foreach($kurangiSaldo as $kurangSaldo){
+            $ambilSaldo = DB::table('saldos')->where('saldos.user_id',$kurangSaldo->user_id)->first();
+            $ubahSaldo = $ambilSaldo->saldo - $kurangSaldo->subtotal;
+
+            $update = DB::table('saldos')
+                    ->where('saldos.user_id',$kurangSaldo->user_id)
+                    ->update([
+                        'saldo' => $ubahSaldo
+                    ]);
+        }
+
         return redirect()->route('user.dashboard');
     }
 }

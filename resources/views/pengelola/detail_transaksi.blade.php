@@ -41,6 +41,11 @@
                                         <div class="col-md-4">
                                             <table>
                                                 <tr>
+                                                    <th>Keterangan</th>
+                                                    <td>:</td>
+                                                    <td><span class="badge bg-warning">{{ $order->keterangan }}</span></td>
+                                                </tr>
+                                                <tr>
                                                     <th>No Invoice</th>
                                                     <td>:</td>
                                                     <td>{{ $order->invoice }}</td>
@@ -53,7 +58,7 @@
                                                 <tr>
                                                     <th>Status Pesanan</th>
                                                     <td>:</td>
-                                                    <td><span class="badge bg-danger">{{ $order->status }}</span></td>
+                                                    <td><span class="badge bg-success">{{ $order->status }}</span></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Metode Pembayaran</th>
@@ -73,7 +78,8 @@
                                                     <td class="p-2"><a
                                                             href="{{ route('pengelola.transaksi.konfirmasi', ['id' => $order->id]) }}"
                                                             onclick="return confirm('Yakin ingin mengonfirmasi pesanan ini?')"
-                                                            class="btn btn-primary mt-1">Proses</a><br>
+                                                            class="btn btn-primary mt-1"><i
+                                                                class="fas fa-check"></i>Proses</a><br>
                                                     </td>
                                                 </tr>
                                             </table>

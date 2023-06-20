@@ -56,7 +56,7 @@
             $total_order = DB::table('orders')
                 ->select(DB::raw('count(id) as jumlah'))
                 ->where('user_id', $user_id)
-                ->where('status_order_id', '!=', 2)
+                ->where('keterangan', '=', 'Sedang Diproses')
                 ->first();
             ?>
             <li class="nav-item">

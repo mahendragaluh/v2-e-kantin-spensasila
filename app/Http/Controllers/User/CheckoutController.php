@@ -20,11 +20,16 @@ class CheckoutController extends Controller
                             ->select('menus.nama_menu','menus.foto_menu','users.name','keranjangs.*','menus.harga_menu')
                             ->where('keranjangs.user_id','=',$id_user)
                             ->get();
+        $saldos = DB::table('saldos')
+                    ->select('saldos.*')
+                    ->where('saldos.user_id', '=', $id_user)
+                    ->first();
 
         //buat kode invoice sesua tanggalbulantahun dan jam
         $data = [
             'invoice' => 'INV'.Date('Ymdhi'),
             'keranjangs' => $keranjangs,
+            'saldos' => $saldos,
         ];
         return view('user.checkout',$data);
     }

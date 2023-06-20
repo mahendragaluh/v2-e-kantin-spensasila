@@ -17,7 +17,7 @@ class TransaksiController extends Controller
                     ->join('metode_pembayarans','metode_pembayarans.id','=','orders.metode_pembayaran_id')
                     ->orderBy('id', 'desc')
                     ->select('orders.*', 'status_orders.name', 'users.name as nama_pemesan', 'metode_pembayarans.name as pembayaran')
-                    ->where('orders.status_order_id',1)
+                    ->where('orders.keterangan', "Sedang Diproses")
                     ->get();
         $data = array(
             'orderbaru' => $order
@@ -52,32 +52,32 @@ class TransaksiController extends Controller
     {
         //function ini untuk mengkonfirmasi bahwa pelanngan sudah melakukan pembayaran
         $order = Order::findOrFail($id);
-        $order->status_order_id = 2;
+        $order->keterangan = 'Pesanan Siap';
         $order->save();
 
-        $kurangistok = DB::table('order_details')->where('order_id',$id)->get();
-        foreach($kurangistok as $kurang){
-            $ambilmenu = DB::table('menus')->where('id',$kurang->menu_id)->first();
-            $ubahstok = $ambilmenu->stok_menu - $kurang->qty;
+        // $kurangistok = DB::table('order_details')->where('order_id',$id)->get();
+        // foreach($kurangistok as $kurang){
+        //     $ambilmenu = DB::table('menus')->where('id',$kurang->menu_id)->first();
+        //     $ubahstok = $ambilmenu->stok_menu - $kurang->qty;
 
-            $update = DB::table('menus')
-                    ->where('id',$kurang->menu_id)
-                    ->update([
-                        'stok_menu' => $ubahstok
-                    ]);
-        }
+        //     $update = DB::table('menus')
+        //             ->where('id',$kurang->menu_id)
+        //             ->update([
+        //                 'stok_menu' => $ubahstok
+        //             ]);
+        // }
 
-        $kurangiSaldo = DB::table('orders')->where('id',$id)->get();
-        foreach($kurangiSaldo as $kurangSaldo){
-            $ambilSaldo = DB::table('saldos')->where('saldos.user_id',$kurangSaldo->user_id)->first();
-            $ubahSaldo = $ambilSaldo->saldo - $kurangSaldo->subtotal;
+        // $kurangiSaldo = DB::table('orders')->where('id',$id)->get();
+        // foreach($kurangiSaldo as $kurangSaldo){
+        //     $ambilSaldo = DB::table('saldos')->where('saldos.user_id',$kurangSaldo->user_id)->first();
+        //     $ubahSaldo = $ambilSaldo->saldo - $kurangSaldo->subtotal;
 
-            $update = DB::table('saldos')
-                    ->where('saldos.user_id',$kurangSaldo->user_id)
-                    ->update([
-                        'saldo' => $ubahSaldo
-                    ]);
-        }
+        //     $update = DB::table('saldos')
+        //             ->where('saldos.user_id',$kurangSaldo->user_id)
+        //             ->update([
+        //                 'saldo' => $ubahSaldo
+        //             ]);
+        // }
 
         return redirect()->route('pengelola.transaksi.selesai');
     }
@@ -90,7 +90,7 @@ class TransaksiController extends Controller
                     ->join('metode_pembayarans','metode_pembayarans.id','=','orders.metode_pembayaran_id')
                     ->orderBy('updated_at', 'desc')
                     ->select('orders.*', 'status_orders.name', 'users.name as nama_pemesan', 'metode_pembayarans.name as pembayaran')
-                    ->where('orders.status_order_id',2)
+                    ->where('orders.keterangan',"Pesanan Siap")
                     ->get();
         $data = array(
             'orderbaru' => $order

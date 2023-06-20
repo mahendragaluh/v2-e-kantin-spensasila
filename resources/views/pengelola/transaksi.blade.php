@@ -41,6 +41,7 @@
                                                 <th style="width: 8%">Pembayaran</th>
                                                 <th style="width: 10%">Subtotal</th>
                                                 <th style="width: 10%">Status Order</th>
+                                                <th style="width: 10%">Keterangan</th>
                                                 <th style="width: 10%">#</th>
                                             </tr>
                                         </thead>
@@ -52,12 +53,13 @@
                                                     <td>{{ $o->nama_pemesan }}</td>
                                                     <td>{{ $o->pembayaran }}</td>
                                                     <td>Rp{{ number_format($o->subtotal, 2, ',', '.') }}</td>
-                                                    <td><span class="badge bg-danger">{{ $o->name }}</span></td>
+                                                    <td><span class="badge bg-success">{{ $o->name }}</span></td>
+                                                    <td><span class="badge bg-warning">{{ $o->keterangan }}</span></td>
                                                     <td>
                                                         <a href="{{ route('pengelola.transaksi.detail', ['id' => $o->id]) }}"
                                                             class="btn btn-sm btn-primary">
-                                                            <i class="fa fa-edit"></i>
-                                                            Detail
+                                                            <i class="fas fa-check"></i>
+                                                            Proses
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -71,6 +73,7 @@
                                                 <th>Pembayaran</th>
                                                 <th>Subtotal</th>
                                                 <th>Status Order</th>
+                                                <th>Keterangan</th>
                                                 <th>#</th>
                                             </tr>
                                         </tfoot>

@@ -70,10 +70,12 @@
                                             <option value="1">Saldo</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary py-3 btn-block" type="submit">Pesan
-                                            Sekarang</button>
-                                    </div>
+                                    @if ($subtotal <= $saldos->saldo)
+                                        <div class="form-group">
+                                            <button class="btn btn-primary py-3 btn-block" type="submit">Pesan
+                                                Sekarang</button>
+                                        </div>
+                                    @endif
                                 </form>
                             </div>
                             <!-- /.card-body -->
